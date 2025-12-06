@@ -398,9 +398,9 @@ def realtime_mode(enhancement_mode, remove_shadow, denoise, sharpen, deskew, pad
                     st.session_state.snapshot_taken = False
                     st.session_state.captured_image = None
                     st.rerun()
-            
+                    
             with col_d:
-                if st.button("❌ Cancel", use_container_width=True):
+                if st.button("❌ Cancel", use_container_width=True, key="cancel_realtime_capture"):
                     st.session_state.snapshot_taken = False
                     st.session_state.captured_image = None
                     processor = ctx.video_processor if ctx.video_processor else st.session_state.get('realtime_processor')
@@ -674,9 +674,10 @@ def adjustment_mode():
             st.session_state.current_mode = 'upload'
             st.rerun()
     with col2:
-        if st.button("❌ Cancel", use_container_width=True):
+        if st.button("❌ Cancel", use_container_width=True, key="cancel_adjust_corners"):
             st.session_state.current_mode = 'upload'
             st.rerun()
+
 
 # ==================== PROCESS SCAN ====================
 def process_scan(enhancement_mode, remove_shadow, denoise, sharpen, deskew, pad_frac):
